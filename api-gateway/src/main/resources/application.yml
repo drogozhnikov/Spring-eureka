@@ -1,0 +1,56 @@
+server:
+  port: 8080
+
+key:
+  security_adress: http://localhost:8081/api/auth/validate?token=
+
+spring:
+  application.name: api-gateway-service
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+      routes:
+        - id: eureka-server
+          uri: http://localhost:8761
+          predicates:
+            Path=/eureka/web
+          filters:
+            SetPath=/
+
+        - id: eureka-server-static
+          uri: http://localhost:8761
+          predicates:
+            - Path=/eureka/**
+
+        - id: eureka-client
+          uri: lb://eureka-client
+          predicates:
+            - Path=/
+
+        - id: security-service
+          uri: lb://security-service
+          predicates:
+            - Path=/api/auth/**
+
+        - id: panda-service
+          uri: lb://panda-service
+          predicates:
+            - Path=/api/panda/**
+          filters:
+            - AuthenticationFilter
+
+        - id: sales-area-service
+          uri: lb://sales-area-service
+          predicates:
+            - Path=/api/users/**
+          filters:
+            - AuthenticationFilter
+
+logging:
+  level:
+    root: info
