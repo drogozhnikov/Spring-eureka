@@ -2,7 +2,7 @@ server:
   port: 8080
 
 key:
-  security_adress: http://localhost:8081/api/auth/validate?token=
+  security_adress: http://localhost:8081/api/auth/
 
 spring:
   application.name: api-gateway-service
@@ -48,6 +48,13 @@ spring:
           uri: lb://sales-area-service
           predicates:
             - Path=/api/users/**
+          filters:
+            - AuthenticationFilter
+
+        - id: bornlist-service
+          uri: lb://bornlist-service
+          predicates:
+            - Path=/api/i113/**
           filters:
             - AuthenticationFilter
 

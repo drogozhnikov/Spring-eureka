@@ -50,7 +50,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
     private Boolean validate(String authHeader){
         try {
 //          String value = (String)restTemplate.getForObject("http://SECURITY-SERVICE/api/auth/validate", String.class);
-           return restTemplate.getForObject(securityAdress + authHeader, Boolean.class);
+           return restTemplate.getForObject(securityAdress + "validate?token=" + authHeader, Boolean.class);
         } catch (Exception e) {
           throw new JwtAuthenticationException("Authorization failure. Server Error", HttpStatus.FORBIDDEN);
         }
