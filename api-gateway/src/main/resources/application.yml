@@ -44,6 +44,11 @@ spring:
           filters:
             - AuthenticationFilter
 
+        - id: telbot-service
+          uri: lb://telbot-service
+          predicates:
+            - Path=/api/i113/telegrambot/**
+
         - id: sales-area-service
           uri: lb://sales-area-service
           predicates:

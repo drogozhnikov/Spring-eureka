@@ -34,7 +34,6 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
     public GatewayFilter apply(Config config) {
         return ((exchange, chain) -> {
             if (routerValidator.isSecured.test(exchange.getRequest())) {
-                //header contains token or not
                 if (!exchange.getRequest().getHeaders().containsKey(HttpHeaders.AUTHORIZATION)) {
                     throw new JwtAuthenticationException("missing authorization header", HttpStatus.FORBIDDEN);
                 }
@@ -49,7 +48,6 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
 
     private Boolean validate(String authHeader){
         try {
-//          String value = (String)restTemplate.getForObject("http://SECURITY-SERVICE/api/auth/validate", String.class);
            return restTemplate.getForObject(securityAdress + "validate?token=" + authHeader, Boolean.class);
         } catch (Exception e) {
           throw new JwtAuthenticationException("Authorization failure. Server Error", HttpStatus.FORBIDDEN);
