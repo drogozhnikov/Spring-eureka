@@ -9,7 +9,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import ru.micro.gateway.exception.JwtAuthenticationException;
 import ru.micro.gateway.exception.UnauthorisedException;
 import ru.micro.gateway.security.RouterValidator;
 
