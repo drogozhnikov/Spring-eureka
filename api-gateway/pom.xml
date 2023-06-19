@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
     <name>api-gateway</name>
     <groupId>ru.micro</groupId>
+    <version>0.0.1</version>
     <artifactId>api-gateway</artifactId>
 
     <properties>

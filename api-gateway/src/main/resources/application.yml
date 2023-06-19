@@ -2,7 +2,7 @@ server:
   port: 8080
 
 key:
-  security_adress: http://localhost:8081/api/auth/
+  security_adress: http://192.168.100.4:8081/api/auth/
 
 spring:
   application.name: api-gateway-service
@@ -16,14 +16,14 @@ spring:
         add-to-simple-url-handler-mapping: true
       routes:
         - id: eureka-server
-          uri: http://localhost:8761
+          uri: http://192.168.100.4:8761
           predicates:
             Path=/eureka/web
           filters:
             SetPath=/
 
         - id: eureka-server-static
-          uri: http://localhost:8761
+          uri: http://192.168.100.4:8761
           predicates:
             - Path=/eureka/**
 
@@ -66,3 +66,8 @@ spring:
 logging:
   level:
     root: info
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.100.4:8761/eureka
