@@ -1,6 +1,9 @@
-
 key:
   security_adress: http://localhost:8081/api/auth/
+
+logging:
+  level:
+    root: info
 
 spring:
   application.name: api-gateway-service
@@ -65,3 +68,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+
+
+

@@ -3,12 +3,8 @@ server:
 
 spring:
   profiles:
-    active: dev
-#    active: prod
-
-logging:
-  level:
-    root: info
+#    active: dev
+    active: prod
 
 management:
   endpoint:
